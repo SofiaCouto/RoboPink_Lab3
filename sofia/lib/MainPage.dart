@@ -1,8 +1,14 @@
 import 'dart:async';
+//import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:scoped_model/scoped_model.dart';
+import 'package:flutter_joystick/flutter_joystick.dart';
+import 'package:get/get.dart';
+
+import 'package:sofia/object_detected.dart';
+
 
 import './BackgroundCollectedPage.dart';
 import './BackgroundCollectingTask.dart';
@@ -89,13 +95,27 @@ class _MainPage extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Flutter Bluetooth Serial'),
+        title: const Text('Robô Pink Grupo B'),
       ),
+      
       body: Container(
+
         child: ListView(
           children: <Widget>[
             Divider(),
-            ListTile(title: const Text('General')),
+
+            ListTile(
+              title: const Text('Sensor ESquerdo'),
+              subtitle: Text(_bluetoothState.toString()),
+            ),
+            
+             ListTile(
+              title: const Text('Sensor Direito'),
+              subtitle: Text(_bluetoothState.toString()),
+            ),
+            
+
+
             SwitchListTile(
               title: const Text('Enable Bluetooth'),
               value: _bluetoothState.isEnabled,
@@ -354,4 +374,15 @@ class _MainPage extends State<MainPage> {
       );
     }
   }
-}
+} 
+
+abstract class JoystickScreen extends StatelessWidget {
+  final JoystickController _joystickController = JoystickController();
+
+    JoystickScreen({super.key});
+
+ /* @override
+  Widget build(BuildContext context) { 
+  } */ 
+
+} 
